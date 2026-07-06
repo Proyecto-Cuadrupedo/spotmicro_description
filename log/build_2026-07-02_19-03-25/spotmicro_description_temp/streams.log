@@ -1,0 +1,34 @@
+[0.072s] Invoking command in '/home/chaski/spotmicro_ws/src/spotmicro_description/build/spotmicro_description_temp': CMAKE_PREFIX_PATH=/home/chaski/chaski_ws/install/sllidar_ros2:/home/chaski/chaski_ws/install/mi_paquete:/home/chaski/chaski_ws/install/chaski_keyboard_command:/opt/ros/jazzy:/home/chaski/chaski_ws/install/servo_move_keyboard:/home/chaski/chaski_ws/install/chaski_rviz:/home/chaski/chaski_ws/install/chaski_plot:/home/chaski/chaski_ws/install/chaski_launch:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor /usr/bin/cmake /home/chaski/spotmicro_ws/src/spotmicro_description -DCMAKE_INSTALL_PREFIX=/home/chaski/spotmicro_ws/src/spotmicro_description/install/spotmicro_description_temp
+[1.067s] -- The C compiler identification is GNU 13.3.0
+[3.363s] -- The CXX compiler identification is GNU 13.3.0
+[5.349s] -- Detecting C compiler ABI info
+[6.339s] -- Detecting C compiler ABI info - done
+[6.361s] -- Check for working C compiler: /usr/bin/cc - skipped
+[6.364s] -- Detecting C compile features
+[6.365s] -- Detecting C compile features - done
+[6.733s] -- Detecting CXX compiler ABI info
+[7.764s] -- Detecting CXX compiler ABI info - done
+[7.791s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[7.792s] -- Detecting CXX compile features
+[7.793s] -- Detecting CXX compile features - done
+[7.857s] -- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[8.356s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[12.248s] [31mCMake Error at CMakeLists.txt:15 (find_package):
+[12.248s]   By not providing "Findament_lint_auto.cmake" in CMAKE_MODULE_PATH this
+[12.249s]   project has asked CMake to find a package configuration file provided by
+[12.249s]   "ament_lint_auto", but CMake did not find one.
+[12.249s] 
+[12.249s]   Could not find a package configuration file provided by "ament_lint_auto"
+[12.249s]   with any of the following names:
+[12.249s] 
+[12.249s]     ament_lint_autoConfig.cmake
+[12.250s]     ament_lint_auto-config.cmake
+[12.250s] 
+[12.250s]   Add the installation prefix of "ament_lint_auto" to CMAKE_PREFIX_PATH or
+[12.250s]   set "ament_lint_auto_DIR" to a directory containing one of the above files.
+[12.250s]   If "ament_lint_auto" provides a separate development package or SDK, be
+[12.250s]   sure it has been installed.
+[12.250s] 
+[12.251s] [0m
+[12.251s] -- Configuring incomplete, errors occurred!
+[12.264s] Invoked command in '/home/chaski/spotmicro_ws/src/spotmicro_description/build/spotmicro_description_temp' returned '1': CMAKE_PREFIX_PATH=/home/chaski/chaski_ws/install/sllidar_ros2:/home/chaski/chaski_ws/install/mi_paquete:/home/chaski/chaski_ws/install/chaski_keyboard_command:/opt/ros/jazzy:/home/chaski/chaski_ws/install/servo_move_keyboard:/home/chaski/chaski_ws/install/chaski_rviz:/home/chaski/chaski_ws/install/chaski_plot:/home/chaski/chaski_ws/install/chaski_launch:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor /usr/bin/cmake /home/chaski/spotmicro_ws/src/spotmicro_description -DCMAKE_INSTALL_PREFIX=/home/chaski/spotmicro_ws/src/spotmicro_description/install/spotmicro_description_temp

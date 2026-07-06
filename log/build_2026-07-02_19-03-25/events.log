@@ -1,0 +1,160 @@
+[0.000000] (-) TimerEvent: {}
+[0.001551] (spotmicro_description_temp) JobQueued: {'identifier': 'spotmicro_description_temp', 'dependencies': OrderedDict()}
+[0.001739] (spotmicro_description_temp) JobStarted: {'identifier': 'spotmicro_description_temp'}
+[0.063033] (spotmicro_description_temp) JobProgress: {'identifier': 'spotmicro_description_temp', 'progress': 'cmake'}
+[0.070445] (spotmicro_description_temp) Command: {'cmd': ['/usr/bin/cmake', '/home/chaski/spotmicro_ws/src/spotmicro_description', '-DCMAKE_INSTALL_PREFIX=/home/chaski/spotmicro_ws/src/spotmicro_description/install/spotmicro_description_temp'], 'cwd': '/home/chaski/spotmicro_ws/src/spotmicro_description/build/spotmicro_description_temp', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'USER': 'chaski', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'ROS_PACKAGE_PATH': '/home/chaski/chaski_ws/install/servo_move_keyboard/share', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/chaski', 'OLDPWD': '/home/chaski', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/chaski/chaski_ws/install:/home/chaski/chaski_ws/src/chaski_rviz/urdf/install:/home/chaski/chaski_ws/src/chaski_rviz/launch/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'chaski', 'NAME': 'MIGUELDESKTOP', 'WSL_INTEROP': '/run/WSL/328_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'PKG_CONFIG_PATH': '/home/chaski/chaski_ws/install/servo_move_keyboard/lib/x86_64-linux-gnu/pkgconfig:/home/chaski/chaski_ws/install/servo_move_keyboard/lib/pkgconfig', 'TERM': 'xterm-256color', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/WindowsApps/MicrosoftCorporationII.WindowsSubsystemForLinux_2.6.3.0_x64__8wekyb3d8bbwe:/mnt/c/Program Files/Oculus/Support/oculus-runtime:/mnt/c/Users/migue/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/TDM-GCC-64/bin:/mnt/c/msys64/mingw64/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/dotnet/:/mnt/c/Users/migue/AppData/Local/Programs/Python/Python312/Scripts/:/mnt/c/Users/migue/AppData/Local/Programs/Python/Python312/:/mnt/c/Users/migue/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/migue/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/migue/AppData/Local/Microsoft/WinGet/Packages/Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/migue/AppData/Roaming/npm:/mnt/c/SQLITE 3:/mnt/c/Users/migue/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/migue/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Program Files/nodejs/:/mnt/c/Xampp2/php:/mnt/c/ProgramData/ComposerSetup/bin:/mnt/c/Program Files/cursor/resources/app/bin:/mnt/c/Program Files/MATLAB/R2025b/bin:/mnt/c/Program Files/usbipd-win/:/mnt/c/php82:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/c/Users/migue/AppData/Local/Programs/Python/Python312/Scripts/:/mnt/c/Users/migue/AppData/Local/Programs/Python/Python312/:/mnt/c/Users/migue/AppData/Local/Programs/Python/Launcher/:/mnt/c/Users/migue/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/migue/AppData/Local/Microsoft/WinGet/Packages/Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/SQLITE 3:/mnt/c/Program Files/php-8.1.30-nts-Win32-vs16-x64:/mnt/c/Users/migue/AppData/Roaming/npm:/mnt/c/Users/migue/AppData/Local/Programs/Windsurf/bin:/mnt/c/Users/migue/AppData/Roaming/Composer/vendor/bin:/mnt/c/Users/migue/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/migue/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/chaski/chaski_ws/install/sllidar_ros2:/home/chaski/chaski_ws/install/mi_paquete:/home/chaski/chaski_ws/install/chaski_rviz:/home/chaski/chaski_ws/install/chaski_plot:/home/chaski/chaski_ws/install/chaski_launch:/home/chaski/chaski_ws/install/chaski_keyboard_command:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/chaski/spotmicro_ws/src/spotmicro_description/build/spotmicro_description_temp', 'TURTLEBOT3_MODEL': 'waffle', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/chaski/chaski_ws/build/mi_paquete:/home/chaski/chaski_ws/install/mi_paquete/lib/python3.12/site-packages:/home/chaski/chaski_ws/build/chaski_keyboard_command:/home/chaski/chaski_ws/install/chaski_keyboard_command/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/home/chaski/chaski_ws/install/sllidar_ros2:/home/chaski/chaski_ws/install/mi_paquete:/home/chaski/chaski_ws/install/chaski_keyboard_command:/opt/ros/jazzy:/home/chaski/chaski_ws/install/servo_move_keyboard:/home/chaski/chaski_ws/install/chaski_rviz:/home/chaski/chaski_ws/install/chaski_plot:/home/chaski/chaski_ws/install/chaski_launch:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor', 'WSLENV': ''}), 'shell': False}
+[0.098154] (-) TimerEvent: {}
+[0.199239] (-) TimerEvent: {}
+[0.300104] (-) TimerEvent: {}
+[0.400936] (-) TimerEvent: {}
+[0.502020] (-) TimerEvent: {}
+[0.602959] (-) TimerEvent: {}
+[0.703739] (-) TimerEvent: {}
+[0.804406] (-) TimerEvent: {}
+[0.905351] (-) TimerEvent: {}
+[1.006077] (-) TimerEvent: {}
+[1.068213] (spotmicro_description_temp) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[1.106671] (-) TimerEvent: {}
+[1.207941] (-) TimerEvent: {}
+[1.314218] (-) TimerEvent: {}
+[1.419631] (-) TimerEvent: {}
+[1.525843] (-) TimerEvent: {}
+[1.632125] (-) TimerEvent: {}
+[1.740683] (-) TimerEvent: {}
+[1.847137] (-) TimerEvent: {}
+[1.953630] (-) TimerEvent: {}
+[2.059996] (-) TimerEvent: {}
+[2.166397] (-) TimerEvent: {}
+[2.267418] (-) TimerEvent: {}
+[2.368206] (-) TimerEvent: {}
+[2.468936] (-) TimerEvent: {}
+[2.570176] (-) TimerEvent: {}
+[2.671288] (-) TimerEvent: {}
+[2.771913] (-) TimerEvent: {}
+[2.874594] (-) TimerEvent: {}
+[2.975429] (-) TimerEvent: {}
+[3.076627] (-) TimerEvent: {}
+[3.178796] (-) TimerEvent: {}
+[3.283700] (-) TimerEvent: {}
+[3.364101] (spotmicro_description_temp) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[3.383965] (-) TimerEvent: {}
+[3.484525] (-) TimerEvent: {}
+[3.585455] (-) TimerEvent: {}
+[3.686523] (-) TimerEvent: {}
+[3.787654] (-) TimerEvent: {}
+[3.890605] (-) TimerEvent: {}
+[3.996828] (-) TimerEvent: {}
+[4.103043] (-) TimerEvent: {}
+[4.209274] (-) TimerEvent: {}
+[4.309993] (-) TimerEvent: {}
+[4.410840] (-) TimerEvent: {}
+[4.511635] (-) TimerEvent: {}
+[4.612257] (-) TimerEvent: {}
+[4.713121] (-) TimerEvent: {}
+[4.813829] (-) TimerEvent: {}
+[4.914469] (-) TimerEvent: {}
+[5.015075] (-) TimerEvent: {}
+[5.116030] (-) TimerEvent: {}
+[5.216703] (-) TimerEvent: {}
+[5.317373] (-) TimerEvent: {}
+[5.351014] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[5.417597] (-) TimerEvent: {}
+[5.518266] (-) TimerEvent: {}
+[5.618795] (-) TimerEvent: {}
+[5.719698] (-) TimerEvent: {}
+[5.820634] (-) TimerEvent: {}
+[5.921402] (-) TimerEvent: {}
+[6.022176] (-) TimerEvent: {}
+[6.122761] (-) TimerEvent: {}
+[6.223417] (-) TimerEvent: {}
+[6.324169] (-) TimerEvent: {}
+[6.340215] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[6.362403] (spotmicro_description_temp) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[6.365237] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[6.367020] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[6.424740] (-) TimerEvent: {}
+[6.525432] (-) TimerEvent: {}
+[6.626114] (-) TimerEvent: {}
+[6.726790] (-) TimerEvent: {}
+[6.734316] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[6.827003] (-) TimerEvent: {}
+[6.927672] (-) TimerEvent: {}
+[7.028335] (-) TimerEvent: {}
+[7.128953] (-) TimerEvent: {}
+[7.232947] (-) TimerEvent: {}
+[7.333705] (-) TimerEvent: {}
+[7.438630] (-) TimerEvent: {}
+[7.542223] (-) TimerEvent: {}
+[7.648086] (-) TimerEvent: {}
+[7.753820] (-) TimerEvent: {}
+[7.764984] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[7.792442] (spotmicro_description_temp) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[7.793349] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[7.794416] (spotmicro_description_temp) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[7.856436] (-) TimerEvent: {}
+[7.858997] (spotmicro_description_temp) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[7.961685] (-) TimerEvent: {}
+[8.062504] (-) TimerEvent: {}
+[8.163423] (-) TimerEvent: {}
+[8.269469] (-) TimerEvent: {}
+[8.357616] (spotmicro_description_temp) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[8.370281] (-) TimerEvent: {}
+[8.470975] (-) TimerEvent: {}
+[8.571847] (-) TimerEvent: {}
+[8.674288] (-) TimerEvent: {}
+[8.779781] (-) TimerEvent: {}
+[8.885448] (-) TimerEvent: {}
+[8.991153] (-) TimerEvent: {}
+[9.097079] (-) TimerEvent: {}
+[9.202848] (-) TimerEvent: {}
+[9.309029] (-) TimerEvent: {}
+[9.414850] (-) TimerEvent: {}
+[9.520645] (-) TimerEvent: {}
+[9.626449] (-) TimerEvent: {}
+[9.732344] (-) TimerEvent: {}
+[9.837063] (-) TimerEvent: {}
+[9.942820] (-) TimerEvent: {}
+[10.048624] (-) TimerEvent: {}
+[10.154434] (-) TimerEvent: {}
+[10.260268] (-) TimerEvent: {}
+[10.366093] (-) TimerEvent: {}
+[10.472097] (-) TimerEvent: {}
+[10.577855] (-) TimerEvent: {}
+[10.683725] (-) TimerEvent: {}
+[10.788347] (-) TimerEvent: {}
+[10.893770] (-) TimerEvent: {}
+[10.999664] (-) TimerEvent: {}
+[11.104851] (-) TimerEvent: {}
+[11.210646] (-) TimerEvent: {}
+[11.316454] (-) TimerEvent: {}
+[11.422248] (-) TimerEvent: {}
+[11.528001] (-) TimerEvent: {}
+[11.633791] (-) TimerEvent: {}
+[11.739604] (-) TimerEvent: {}
+[11.845441] (-) TimerEvent: {}
+[11.950888] (-) TimerEvent: {}
+[12.054310] (-) TimerEvent: {}
+[12.160348] (-) TimerEvent: {}
+[12.249596] (spotmicro_description_temp) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:15 (find_package):\n'}
+[12.250174] (spotmicro_description_temp) StderrLine: {'line': b'  By not providing "Findament_lint_auto.cmake" in CMAKE_MODULE_PATH this\n'}
+[12.250329] (spotmicro_description_temp) StderrLine: {'line': b'  project has asked CMake to find a package configuration file provided by\n'}
+[12.250462] (spotmicro_description_temp) StderrLine: {'line': b'  "ament_lint_auto", but CMake did not find one.\n'}
+[12.250589] (spotmicro_description_temp) StderrLine: {'line': b'\n'}
+[12.250719] (spotmicro_description_temp) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_lint_auto"\n'}
+[12.250864] (spotmicro_description_temp) StderrLine: {'line': b'  with any of the following names:\n'}
+[12.250989] (spotmicro_description_temp) StderrLine: {'line': b'\n'}
+[12.251114] (spotmicro_description_temp) StderrLine: {'line': b'    ament_lint_autoConfig.cmake\n'}
+[12.251242] (spotmicro_description_temp) StderrLine: {'line': b'    ament_lint_auto-config.cmake\n'}
+[12.251368] (spotmicro_description_temp) StderrLine: {'line': b'\n'}
+[12.251493] (spotmicro_description_temp) StderrLine: {'line': b'  Add the installation prefix of "ament_lint_auto" to CMAKE_PREFIX_PATH or\n'}
+[12.251678] (spotmicro_description_temp) StderrLine: {'line': b'  set "ament_lint_auto_DIR" to a directory containing one of the above files.\n'}
+[12.251890] (spotmicro_description_temp) StderrLine: {'line': b'  If "ament_lint_auto" provides a separate development package or SDK, be\n'}
+[12.252098] (spotmicro_description_temp) StderrLine: {'line': b'  sure it has been installed.\n'}
+[12.252228] (spotmicro_description_temp) StderrLine: {'line': b'\n'}
+[12.252354] (spotmicro_description_temp) StderrLine: {'line': b'\x1b[0m\n'}
+[12.252479] (spotmicro_description_temp) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[12.260606] (-) TimerEvent: {}
+[12.265821] (spotmicro_description_temp) CommandEnded: {'returncode': 1}
+[12.356578] (spotmicro_description_temp) JobEnded: {'identifier': 'spotmicro_description_temp', 'rc': 1}
+[12.360957] (-) TimerEvent: {}
+[12.368479] (-) EventReactorShutdown: {}
