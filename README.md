@@ -109,6 +109,12 @@ source install/setup.bash
 ros2 launch spotmicro_description sim.launch.py
 ```
 
+The default world is `custom_environment.sdf`. To launch the depot world instead:
+
+```bash
+ros2 launch spotmicro_description sim.launch.py world:=depot.sdf
+```
+
 Press the play/start button in Gazebo before starting the controllers.
 
 ## Run The Controller Stack

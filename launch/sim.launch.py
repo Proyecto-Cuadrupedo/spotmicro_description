@@ -25,7 +25,7 @@ def generate_launch_description():
 			"gz_args": PathJoinSubstitution([
 				pkg_share,
 				"worlds",
-				"custom_environment.sdf",
+				LaunchConfiguration("world"),
 			])
 		}.items(),
 	)
@@ -70,6 +70,7 @@ def generate_launch_description():
 
 
 	return LaunchDescription([
+		DeclareLaunchArgument("world", default_value="custom_environment.sdf"),
 		DeclareLaunchArgument("spawn_z", default_value="0.35"),
 		gz_sim,
 		robot_state_publisher,
