@@ -3,9 +3,9 @@ import os
 import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
 
 
@@ -15,7 +15,10 @@ def generate_launch_description():
 
 	urdf_file = os.path.join(pkg_share, "urdf", "spotmicro.urdf.xacro")
 	bridge_file = os.path.join(pkg_share, "config", "ros_gz_bridge.yaml")
-	robot_description = xacro.process_file(urdf_file).toxml()
+	robot_description = xacro.process_file(
+		urdf_file,
+		mappings={"pinned_base": "true"},
+	).toxml()
 
 	gz_sim = IncludeLaunchDescription(
 		PythonLaunchDescriptionSource(
@@ -25,7 +28,7 @@ def generate_launch_description():
 			"gz_args": PathJoinSubstitution([
 				pkg_share,
 				"worlds",
-				LaunchConfiguration("world"),
+				"joint_test.sdf",
 			])
 		}.items(),
 	)
@@ -54,7 +57,7 @@ def generate_launch_description():
 			"-y",
 			"0",
 			"-z",
-			LaunchConfiguration("spawn_z"),
+			"0.75",
 		],
 	)
 
@@ -68,13 +71,9 @@ def generate_launch_description():
 		output="screen",
 	)
 
-
 	return LaunchDescription([
-		DeclareLaunchArgument("world", default_value="custom_environment.sdf"),
-		DeclareLaunchArgument("spawn_z", default_value="0.2575"),
 		gz_sim,
 		robot_state_publisher,
 		spawn_robot,
 		bridge,
-	
 	])

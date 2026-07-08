@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="spotmicro_description">
 
+  <xacro:arg name="pinned_base" default="false"/>
+
   <xacro:include filename="$(find spotmicro_description)/urdf/spotmicro.ros2_control.xacro"/>
 
   <material name="yellow">
@@ -43,6 +45,45 @@
 
   <!-- Macros -->
 
+  <xacro:macro name="box_inertial" params="mass x y z *origin">
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="${mass * (y * y + z * z) / 12.0}" ixy="0" ixz="0"
+        iyy="${mass * (x * x + z * z) / 12.0}" iyz="0"
+        izz="${mass * (x * x + y * y) / 12.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="sphere_inertial" params="mass radius *origin">
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="${0.4 * mass * radius * radius}" ixy="0" ixz="0"
+        iyy="${0.4 * mass * radius * radius}" iyz="0"
+        izz="${0.4 * mass * radius * radius}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="toe_contact" params="link_name">
+    <gazebo reference="${link_name}">
+      <mu1>1.2</mu1>
+      <mu2>1.2</mu2>
+      <kp>50000</kp>
+      <kd>8</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>0.2</maxVel>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="enable_self_collision" params="link_name">
+    <gazebo reference="${link_name}">
+      <self_collide>true</self_collide>
+    </gazebo>
+  </xacro:macro>
+
   <xacro:macro name="gen_shoulder" params="name left">
     <link name="${name}">
       <visual>
@@ -66,11 +107,11 @@
         </geometry>
         <origin rpy="0 0 0" xyz="0 0 0"/>
       </collision>
-      <inertial>
-        <mass value="0.10"/>
-        <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
-      </inertial>
+      <xacro:box_inertial mass="0.10" x="${shoulder_length}" y="${shoulder_width}" z="${body_height}">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </xacro:box_inertial>
     </link>
+    <xacro:enable_self_collision link_name="${name}"/>
   </xacro:macro>
 
   <xacro:macro name="gen_shoulder_joint" params="pos shiftx shifty">
@@ -79,8 +120,8 @@
       <child link="${pos}_shoulder_link"/>
       <axis xyz="1 0 0"/>
       <origin rpy="0 0 0" xyz="${shiftx} ${shifty} 0"/>
-      <limit effort="1000.0" lower="-0.548" upper="0.548" velocity="0.7"/>
-      <dynamics damping="0.0" friction="0.5"/>
+      <limit effort="2.5" lower="-0.548" upper="0.548" velocity="8.0"/>
+      <dynamics damping="0.03" friction="0.02"/>
     </joint>
   </xacro:macro>
 
@@ -129,11 +170,11 @@
           <box size="0.028 0.036 ${leg_length}"/>
         </geometry>
       </collision>
-      <inertial>
-        <mass value="0.15"/>
-        <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000" />
-      </inertial>
+      <xacro:box_inertial mass="0.15" x="0.028" y="0.036" z="${leg_length}">
+        <origin rpy="0 0 0" xyz="0 0 -0.050"/>
+      </xacro:box_inertial>
     </link>
+    <xacro:enable_self_collision link_name="${name}"/>
   </xacro:macro>
 
   <xacro:macro name="gen_leg_joint" params="pos shift">
@@ -142,8 +183,8 @@
       <child link="${pos}_leg_link"/>
       <axis xyz="0 1 0"/>
       <origin rpy="0 0 0" xyz="0 ${shift} 0"/>
-      <limit effort="1000.0" lower="-2.666" upper="1.548" velocity="0.5"/>
-      <dynamics damping="0.0" friction="0.0"/>
+      <limit effort="4.0" lower="-2.666" upper="1.548" velocity="8.0"/>
+      <dynamics damping="0.04" friction="0.01"/>
     </joint>
 
     <joint name="${pos}_leg_cover_joint" type="fixed">
@@ -176,11 +217,11 @@
         </geometry>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.050"/>
       </collision>
-      <inertial>
-        <mass value="0.1"/>
-        <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000" />
-      </inertial>
+      <xacro:box_inertial mass="0.10" x="0.026" y="0.020" z="${foot_length}">
+        <origin rpy="0 0 0" xyz="0 0 -0.050"/>
+      </xacro:box_inertial>
     </link>
+    <xacro:enable_self_collision link_name="${name}"/>
   </xacro:macro>
 
   <xacro:macro name="gen_foot_joint" params="pos">
@@ -189,8 +230,8 @@
       <child link="${pos}_foot_link"/>
       <axis xyz="0 1 0"/>
       <origin rpy="0 0 0" xyz="0 0 -${leg_length}"/>
-      <limit effort="1000.0" lower="-2.6" upper="0.1" velocity="0.5"/>
-      <dynamics damping="0.0" friction="0.5"/>
+      <limit effort="4.0" lower="-2.6" upper="0.1" velocity="8.0"/>
+      <dynamics damping="0.04" friction="0.02"/>
     </joint>
   </xacro:macro>
 
@@ -210,11 +251,12 @@
         <origin rpy="0 0 0" xyz="0 0 ${toe_radius}"/>
         <contact_coefficients mu="1.1" />
       </collision>
-      <inertial>
-        <mass value="0.05"/>
-        <inertia ixx="1000" ixy="0" ixz="0" iyy="1000" iyz="0" izz="1000" />
-      </inertial>
+      <xacro:sphere_inertial mass="0.05" radius="${toe_radius}">
+        <origin rpy="0 0 0" xyz="0 0 ${toe_radius}"/>
+      </xacro:sphere_inertial>
     </link>
+    <xacro:enable_self_collision link_name="${name}"/>
+    <xacro:toe_contact link_name="${name}"/>
   </xacro:macro>
 
  <xacro:macro name="gen_toe_joint" params="pos">
@@ -238,14 +280,6 @@
   </xacro:macro>
 
   <!-- Robot Body -->
-  <link name="base_footprint"/>
-
-  <joint name="base_footprint_to_base_link" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
-    <origin xyz="0 0 0.2575" rpy="0 0 0"/>
-  </joint>
-
   <link name="base_link">
     <visual>
       <geometry>
@@ -260,11 +294,43 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
-    <inertial>
-      <mass value="2.80"/>
-      <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
-    </inertial>
+    <xacro:unless value="$(arg pinned_base)">
+      <xacro:box_inertial mass="2.80" x="${body_length}" y="${body_width}" z="${body_height}">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </xacro:box_inertial>
+    </xacro:unless>
+    <xacro:if value="$(arg pinned_base)">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="100000.0"/>
+        <inertia ixx="1000.0" ixy="0.0" ixz="0.0" iyy="1000.0" iyz="0.0" izz="1000.0"/>
+      </inertial>
+    </xacro:if>
   </link>
+  <xacro:enable_self_collision link_name="base_link"/>
+
+  <xacro:if value="$(arg pinned_base)">
+    <link name="pinned_world"/>
+
+    <joint name="pinned_world_to_base_link" type="fixed">
+      <parent link="pinned_world"/>
+      <child link="base_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <gazebo reference="base_link">
+      <kinematic>true</kinematic>
+      <gravity>false</gravity>
+    </gazebo>
+  </xacro:if>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_link_to_base_footprint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+    <origin xyz="0 0 -0.2575" rpy="0 0 0"/>
+  </joint>
 
   <!-- Lidar Backpack -->
 
@@ -282,11 +348,11 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
-    <inertial>
-      <mass value="0.50"/>
-      <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
-    </inertial>
+    <xacro:box_inertial mass="0.50" x="${lidar_length}" y="${lidar_width}" z="${lidar_height}">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </xacro:box_inertial>
   </link>
+  <xacro:enable_self_collision link_name="lidar_link"/>
   <joint name="base_lidar" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
@@ -307,11 +373,11 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0.135 0 0"/>
     </collision>
-    <inertial>
-      <mass value="0.20"/>
-      <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
-    </inertial>
+    <xacro:box_inertial mass="0.20" x="${rear_length}" y="${body_width}" z="${body_height}">
+      <origin rpy="0 0 0" xyz="0.135 0 0"/>
+    </xacro:box_inertial>
   </link>
+  <xacro:enable_self_collision link_name="rear_link"/>
   <joint name="base_rear" type="fixed">
     <parent link="base_link"/>
     <child link="rear_link"/>
@@ -331,11 +397,11 @@
       </geometry>
       <origin rpy="0 0 0" xyz="-0.145 0 0"/>
     </collision>
-    <inertial>
-      <mass value="0.20"/>
-      <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
-    </inertial>
+    <xacro:box_inertial mass="0.20" x="${front_length}" y="${body_width}" z="${body_height}">
+      <origin rpy="0 0 0" xyz="-0.145 0 0"/>
+    </xacro:box_inertial>
   </link>
+  <xacro:enable_self_collision link_name="front_link"/>
   <joint name="base_front" type="fixed">
     <parent link="base_link"/>
     <child link="front_link"/>
@@ -347,5 +413,9 @@
   <xacro:gen_full_leg_joint pos="front_right" shiftx="${shiftx}" shifty="-${shifty}" shift="-${shift}" left="false"/>
   <xacro:gen_full_leg_joint pos="rear_left" shiftx="-${shiftx}" shifty="${shifty}" shift="${shift}" left="true"/>
   <xacro:gen_full_leg_joint pos="rear_right" shiftx="-${shiftx}" shifty="-${shifty}" shift="-${shift}" left="false"/>
+
+  <gazebo>
+    <self_collide>true</self_collide>
+  </gazebo>
 
 </robot>

@@ -17,23 +17,12 @@ install(
 
 install(
   PROGRAMS
-    scripts/spotmicro_high_level_controller.py
-    scripts/spotmicro_low_level_controller.py
-    scripts/spotmicro_odometry_publisher.py
-    scripts/spotmicro_pose_controller.py
-    scripts/spotmicro_crawl_controller.py
-    scripts/spotmicro_cmdvel_pub_gui.py
-    scripts/spotmicro_pose_pub_gui.py
-    scripts/spotmicro_joint_force_gui.py
-    scripts/spotmicro_force_test.py
+  scripts/spotmicro_joint_force_gui.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
 install(
   FILES
-    scripts/spotmicro_kinematics.py
-    scripts/spotmicro_reference.py
-    scripts/spotmicro_trajectory_planner.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

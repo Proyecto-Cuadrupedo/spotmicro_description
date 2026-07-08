@@ -31,7 +31,7 @@
 		</plugin>
 		<plugin filename="libignition-gazebo-odometry-publisher-system.so" name="ignition::gazebo::systems::OdometryPublisher">
 			<odom_frame>odom</odom_frame>
-			<child_frame>base_footprint</child_frame>
+			<child_frame>base_link</child_frame>
 			<publish_rate>50</publish_rate>
 			<enable_twist>true</enable_twist>
 			<enable_pose>true</enable_pose>

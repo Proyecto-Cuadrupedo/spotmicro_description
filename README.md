@@ -7,10 +7,9 @@ The current project provides:
 - A SpotMicro URDF/Xacro model with Gazebo-compatible mesh paths.
 - A Gazebo empty world for testing the robot.
 - ROS-Gazebo bridges for joint states, TF, odometry, and joint force commands.
-- A low-level PD controller that converts desired joint positions into Gazebo joint force commands.
-- Experimental high-level, crawl, pose, joystick, and diagnostic controllers.
+- A pygame joint-position GUI that converts desired joint angles into bounded Gazebo joint force commands.
 
-> Note: The Gazebo topic bridge is functional, but the locomotion controller is still experimental. The main remaining work is tuning the SpotMicro-specific kinematics, joint sign mapping, and gait conversion so `/cmd_vel` commands produce stable walking.
+> Note: The direct joint GUI is intended for manual posing and simulation debugging. Full walking still needs a higher-level gait controller that produces stable joint targets.
 
 ## Workspace Setup
 
@@ -88,15 +87,7 @@ ros2 pkg executables spotmicro_description
 Expected executables include:
 
 ```text
-spotmicro_cmdvel_pub_gui.py
-spotmicro_crawl_controller.py
-spotmicro_force_test.py
-spotmicro_high_level_controller.py
 spotmicro_joint_force_gui.py
-spotmicro_low_level_controller.py
-spotmicro_odometry_publisher.py
-spotmicro_pose_controller.py
-spotmicro_pose_pub_gui.py
 ```
 
 ## Launch Gazebo
@@ -115,47 +106,44 @@ The default world is `custom_environment.sdf`. To launch the depot world instead
 ros2 launch spotmicro_description sim.launch.py world:=depot.sdf
 ```
 
-Press the play/start button in Gazebo before starting the controllers.
+Press the play/start button in Gazebo before starting the joint GUI.
 
-## Run The Controller Stack
+For joint testing without the body falling, launch the pinned zero-gravity test world:
+
+```bash
+ros2 launch spotmicro_description joint_test.launch.py
+```
+
+This spawns SpotMicro in the air with the base held kinematic so the GUI can move individual joints without the body dropping onto the floor.
+
+## Move The Joints
 
 Use separate terminals. In every new terminal, source the workspace first:
 
 ```bash
 cd ~/spotmicro_ws
 source install/setup.bash
+ros2 run spotmicro_description spotmicro_joint_force_gui.py
 ```
 
-Start the low-level controller:
+The GUI subscribes to `/joint_states`, starts passive, and publishes zero torque until you drag a joint slider or press `Space` / `H`. The first slider movement enables a soft whole-body hold at the current measured pose, then ramps the selected joint target so commands do not step instantly. Press `M` to release all joints and match the sliders to the current measured pose.
+
+If the robot still jitters, start softer and increase the values gradually:
 
 ```bash
-ros2 run spotmicro_description spotmicro_low_level_controller.py
+ros2 run spotmicro_description spotmicro_joint_force_gui.py --ros-args \
+  -p gain_scale:=0.5 \
+  -p torque_scale:=0.5 \
+  -p target_rate:=0.4
 ```
-
-Start the high-level controller:
-
-```bash
-ros2 run spotmicro_description spotmicro_high_level_controller.py
-```
-
-Start the pygame `/cmd_vel` GUI:
-
-```bash
-ros2 run spotmicro_description spotmicro_cmdvel_pub_gui.py
-```
-
-The joystick publishes `geometry_msgs/msg/Twist` on `/cmd_vel`. The high-level controller converts `/cmd_vel` into desired joint positions on `/high_level/joint_cmd`. The low-level controller converts those desired positions into Gazebo force commands for each joint.
 
 ## Control Pipeline
 
-The current control flow is:
+The current manual control flow is:
 
 ```text
-pygame GUI
-  -> /cmd_vel
-  -> spotmicro_high_level_controller.py
-  -> /high_level/joint_cmd
-  -> spotmicro_low_level_controller.py
+spotmicro_joint_force_gui.py
+  -> /joint_states feedback
   -> /front_left_leg_cmd, /front_right_leg_cmd, ...
   -> ros_gz_bridge
   -> Gazebo /model/spotmicro/joint/<joint_name>/cmd_force
@@ -181,19 +169,7 @@ Check ROS topics:
 ros2 topic list
 ```
 
-Check the joystick command:
-
-```bash
-ros2 topic echo /cmd_vel
-```
-
-Check desired joint positions from the high-level controller:
-
-```bash
-ros2 topic echo /high_level/joint_cmd
-```
-
-Check one low-level torque command:
+Check one GUI torque command:
 
 ```bash
 ros2 topic echo /front_left_leg_cmd --field data
@@ -211,40 +187,16 @@ Echo one Gazebo force topic directly:
 gz topic -e -t /model/spotmicro/joint/front_left_leg/cmd_force
 ```
 
-## Direct Force Test
-
-To isolate Gazebo and the ROS-Gazebo bridge from the high-level controller, stop the low-level controller and run:
-
-```bash
-ros2 run spotmicro_description spotmicro_force_test.py
-```
-
-You can select a joint and amplitude:
-
-```bash
-ros2 run spotmicro_description spotmicro_force_test.py \
-  --ros-args \
-  -p topic:=/front_left_leg_cmd \
-  -p amplitude:=120.0 \
-  -p frequency:=0.5
-```
-
-If the selected joint moves, Gazebo and the bridge are receiving force commands correctly. If it does not move, check that Gazebo is unpaused and that the `cmd_force` topics exist.
-
 ## Development Notes
 
-The original SpotMicro project uses a kinematics and gait pipeline based on foot positions, body state, and servo angle conversion. This ROS 2 simulation currently contains a partial Python adaptation in:
-
-```text
-scripts/spotmicro_reference.py
-```
+The original SpotMicro project uses a kinematics and gait pipeline based on foot positions, body state, and servo angle conversion. This ROS 2 package currently provides direct manual joint positioning; a walking stack can build on top of the same joint limits, joint state feedback, and force command bridge.
 
 The most important remaining tuning tasks are:
 
 - Verify the mapping from original SpotMicro servo names (`RF_1`, `RF_2`, etc.) to this URDF's joint names.
 - Verify joint signs for left and right legs.
-- Tune the low-level PD gains for Gazebo dynamics.
-- Replace experimental gait approximations with a fully validated SpotMicro kinematics port.
+- Tune the GUI PD gains for your Gazebo timestep and robot weight.
+- Add a validated SpotMicro kinematics and gait controller on top of the manual joint interface.
 
 ## Common Issues
 
@@ -261,7 +213,7 @@ source install/setup.bash
 Run nodes with `ros2 run`, not `ros2 launch`:
 
 ```bash
-ros2 run spotmicro_description spotmicro_low_level_controller.py
+ros2 run spotmicro_description spotmicro_joint_force_gui.py
 ```
 
 ### Gazebo does not move
@@ -272,20 +224,18 @@ Check that Gazebo is unpaused and that force topics exist:
 gz topic -l | grep cmd_force
 ```
 
-Then run the direct force test:
+Then run the joint GUI and move a single joint slowly:
 
 ```bash
-ros2 run spotmicro_description spotmicro_force_test.py
+ros2 run spotmicro_description spotmicro_joint_force_gui.py
 ```
 
 ### Robot rocks when pygame starts
 
-This means the high-level controller is producing joint targets that do not match the stable Gazebo posture. Inspect:
+This usually means the home pose or PD gains are too aggressive for the current Gazebo timestep or robot mass. Inspect the measured position and torque values in the GUI, and echo one command topic:
 
 ```bash
-ros2 topic echo /cmd_vel
-ros2 topic echo /high_level/joint_cmd
 ros2 topic echo /front_left_leg_cmd --field data
 ```
 
-The likely fix is to adjust joint sign mapping and the SpotMicro kinematics conversion in `scripts/spotmicro_reference.py`.
+Reduce the affected joint's `kp` or `max_torque` in `scripts/spotmicro_joint_force_gui.py`, rebuild, and test again.

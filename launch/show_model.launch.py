@@ -14,18 +14,11 @@ def generate_launch_description():
     robot_description = {"robot_description": doc.toxml()}
 
     return LaunchDescription([
-        # Static transform: odom -> base_footprint
+        # Static transform: odom -> base_link
         Node(
             package="tf2_ros",
             executable="static_transform_publisher",
-            arguments=["0", "0", "0", "0", "0", "0", "odom", "base_footprint"],
-        ),
-
-        # Static transform: base_footprint -> base_link
-        Node(
-            package="tf2_ros",
-            executable="static_transform_publisher",
-            arguments=["0", "0", "0", "0", "0", "0", "base_footprint", "base_link"],
+            arguments=["0", "0", "0", "0", "0", "0", "odom", "base_link"],
         ),
 
         # Robot state publisher
