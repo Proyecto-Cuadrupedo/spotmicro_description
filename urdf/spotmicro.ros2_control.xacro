@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="spotmicro_control">
+	<xacro:macro name="apply_force_plugin" params="joint_name">
+		<gazebo>
+			<plugin filename="ignition-gazebo-apply-joint-force-system" name="gz::sim::systems::ApplyJointForce">
+				<joint_name>${joint_name}</joint_name>
+			</plugin>
+		</gazebo>
+	</xacro:macro>
+
+	<xacro:apply_force_plugin joint_name="front_left_shoulder"/>
+	<xacro:apply_force_plugin joint_name="front_left_leg"/>
+	<xacro:apply_force_plugin joint_name="front_left_foot"/>
+	<xacro:apply_force_plugin joint_name="front_right_shoulder"/>
+	<xacro:apply_force_plugin joint_name="front_right_leg"/>
+	<xacro:apply_force_plugin joint_name="front_right_foot"/>
+	<xacro:apply_force_plugin joint_name="rear_left_shoulder"/>
+	<xacro:apply_force_plugin joint_name="rear_left_leg"/>
+	<xacro:apply_force_plugin joint_name="rear_left_foot"/>
+	<xacro:apply_force_plugin joint_name="rear_right_shoulder"/>
+	<xacro:apply_force_plugin joint_name="rear_right_leg"/>
+	<xacro:apply_force_plugin joint_name="rear_right_foot"/>
+
+	<gazebo>
+		<plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher"/>
+		<plugin filename="ignition-gazebo-pose-publisher-system" name="ignition::gazebo::systems::PosePublisher">
+			<publish_link_pose>true</publish_link_pose>
+			<use_pose_vector_msg>true</use_pose_vector_msg>
+			<static_publisher>true</static_publisher>
+			<static_update_frequency>1</static_update_frequency>
+		</plugin>
+		<plugin filename="libignition-gazebo-odometry-publisher-system.so" name="ignition::gazebo::systems::OdometryPublisher">
+			<odom_frame>odom</odom_frame>
+			<child_frame>base_footprint</child_frame>
+			<publish_rate>50</publish_rate>
+			<enable_twist>true</enable_twist>
+			<enable_pose>true</enable_pose>
+		</plugin>
+	</gazebo>
+</robot>

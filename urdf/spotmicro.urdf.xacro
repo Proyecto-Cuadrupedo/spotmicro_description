@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="spotmicro_description">
 
+  <xacro:include filename="$(find spotmicro_description)/urdf/spotmicro.ros2_control.xacro"/>
+
   <material name="yellow">
     <color rgba="0.92 0.83 0.0 1"/>
   </material>
@@ -37,6 +39,7 @@
   <xacro:property name="shift" value="0.055" />
   <xacro:property name="shiftx" value="0.093" />
   <xacro:property name="shifty" value="0.039" />
+  <xacro:property name="mesh_dir" value="file://$(find spotmicro_description)/meshes/visual" />
 
   <!-- Macros -->
 
@@ -45,13 +48,13 @@
       <visual>
         <xacro:if value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/lshoulder.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/lshoulder.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 0 3.14159" xyz="0.135 0.015 -0.01"/>
         </xacro:if>
         <xacro:unless value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/rshoulder.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/rshoulder.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 0 3.14159" xyz="0.135 0.095 -0.01"/>
         </xacro:unless>
@@ -86,13 +89,13 @@
       <visual>
         <xacro:if value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/larm_cover.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/larm_cover.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 -0.139 3.14159" xyz="0.130 -0.040 -0.025"/>
         </xacro:if>
         <xacro:unless value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/rarm_cover.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/rarm_cover.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 -0.139 3.14159" xyz="0.130 0.15 -0.025"/>
         </xacro:unless>
@@ -103,13 +106,13 @@
       <visual>
         <xacro:if value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/larm.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/larm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 -0.139 3.14159" xyz="0.130 -0.040 -0.025"/>
         </xacro:if>
         <xacro:unless value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/rarm.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/rarm.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 -0.139 3.14159" xyz="0.130 0.15 -0.025"/>
         </xacro:unless>
@@ -155,13 +158,13 @@
       <visual>
         <xacro:if value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/lfoot.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/lfoot.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 0 3.14159" xyz="0.120 -0.04 0.1"/>
         </xacro:if>
         <xacro:unless value="${left}">
         <geometry>
-          <mesh filename="package://chaski_rviz/urdf/stl/rfoot.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="${mesh_dir}/rfoot.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 0 3.14159" xyz="0.120 0.15 0.1"/>
         </xacro:unless>
@@ -195,7 +198,7 @@
     <link name="${name}">
       <visual>
         <geometry>
-        <mesh filename="package://chaski_rviz/urdf/stl/foot.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="${mesh_dir}/foot.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <origin rpy="0 -0.40010 3.14159" xyz="0.00 0.01 0.015"/>
         <material name="grey"/>
@@ -246,7 +249,7 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <mesh filename="package://chaski_rviz/urdf/stl/mainbody.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="${mesh_dir}/mainbody.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/> 
       <origin rpy="0 0 0" xyz="-0.042 -0.055 0.010"/>
@@ -268,7 +271,7 @@
    <link name="lidar_link">
     <visual>
       <geometry>
-        <mesh filename="package://chaski_rviz/urdf/stl/rplidar_main.STL" scale="0.001 0.001 0.001"/>
+        <mesh filename="${mesh_dir}/rplidar_main.STL" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="black"/> 
       <origin rpy="1.57075 0 0" xyz="${-lidar_length/2+0.015} ${lidar_width/2+0.007} 0"/>
@@ -293,7 +296,7 @@
   <link name="rear_link">
     <visual>
       <geometry>
-        <mesh filename="package://chaski_rviz/urdf/stl/backpart.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="${mesh_dir}/backpart.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <origin rpy="0 0 3.14159" xyz="0.04 0.055 -0.010"/>
       <material name="yellow"/>
@@ -317,7 +320,7 @@
   <link name="front_link">
     <visual>
       <geometry>
-        <mesh filename="package://chaski_rviz/urdf/stl/frontpart.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="${mesh_dir}/frontpart.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <origin rpy="0 0 3.14159" xyz="0.040 0.055 -0.010"/>
       <material name="yellow"/>
