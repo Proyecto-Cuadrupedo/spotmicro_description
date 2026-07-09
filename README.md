@@ -175,6 +175,12 @@ Echo the simulated IMU mounted on `imu_link`:
 ros2 topic echo /imu/data
 ```
 
+Echo the simulated 2D lidar mounted on `lidar_link`:
+
+```bash
+ros2 topic echo /scan
+```
+
 Check one GUI torque command:
 
 ```bash
@@ -190,7 +196,7 @@ gz topic -l | grep spotmicro | sort
 Check Gazebo sensor topics:
 
 ```bash
-gz topic -l | grep imu
+gz topic -l | grep -E 'imu|scan'
 ```
 
 Echo one Gazebo force topic directly:
