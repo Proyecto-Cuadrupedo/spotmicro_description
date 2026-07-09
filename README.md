@@ -169,6 +169,12 @@ Check ROS topics:
 ros2 topic list
 ```
 
+Echo the simulated IMU mounted on `imu_link`:
+
+```bash
+ros2 topic echo /imu/data
+```
+
 Check one GUI torque command:
 
 ```bash
@@ -179,6 +185,12 @@ Check Gazebo command topics:
 
 ```bash
 gz topic -l | grep spotmicro | sort
+```
+
+Check Gazebo sensor topics:
+
+```bash
+gz topic -l | grep imu
 ```
 
 Echo one Gazebo force topic directly:
