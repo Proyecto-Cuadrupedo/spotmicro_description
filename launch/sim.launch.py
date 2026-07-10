@@ -1,12 +1,23 @@
 import os
+import shutil
 
 import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
+
+
+def check_gazebo_cli(_context):
+	if shutil.which("gz") is None:
+		raise RuntimeError(
+			"Gazebo Sim executable 'gz' was not found on PATH. "
+			"Install/source Gazebo Harmonic before launching the simulation, for example: "
+			"sudo apt install gz-harmonic"
+		)
+	return []
 
 
 def generate_launch_description():
@@ -72,6 +83,7 @@ def generate_launch_description():
 	return LaunchDescription([
 		DeclareLaunchArgument("world", default_value="custom_environment.sdf"),
 		DeclareLaunchArgument("spawn_z", default_value="0.2575"),
+		OpaqueFunction(function=check_gazebo_cli),
 		gz_sim,
 		robot_state_publisher,
 		spawn_robot,
